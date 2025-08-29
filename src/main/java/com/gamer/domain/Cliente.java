@@ -1,5 +1,6 @@
 package com.gamer.domain;
 
+import com.gamer.domain.excepciones.CorreoInvalidException;
 import com.gamer.domain.excepciones.DniInvalidException;
 
 public class Cliente {
@@ -14,6 +15,10 @@ public class Cliente {
         String regexDni="^\\d{8}$";
         if (dni == null || !dni.toString().matches(regexDni) ){
             throw new DniInvalidException();
+        }
+
+        if(correo == null || correo.trim().isEmpty() || !correo.contains("@")){
+            throw new CorreoInvalidException();
         }
         this.nombres = nombres;
         this.correo = correo;
